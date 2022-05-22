@@ -8,7 +8,7 @@ from . import settings
 from drf_yasg.views import get_schema_view   
 from drf_yasg import openapi
 
-from answers.urls import router as answers_Router
+from urls import router as answers_Router
 
 router = routers.DefaultRouter()
 router.registry.extend(answers_Router.registry)
