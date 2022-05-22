@@ -1,14 +1,16 @@
+from xml.dom.minidom import Document
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.static import serve
 from rest_framework import routers
 from . import settings
-
 from drf_yasg.views import get_schema_view   
 from drf_yasg import openapi
-
 from urls import router as answers_Router
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 router = routers.DefaultRouter()
 router.registry.extend(answers_Router.registry)
@@ -34,4 +36,5 @@ urlpatterns = [
     path('api/', include(router.urls)),
     
     path('doc/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui')
-]
+
+] + static(settings.STATIC_URL, Document_root=settings.MEDIA_ROOT)  
